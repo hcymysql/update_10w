@@ -11,7 +11,10 @@ select id,create_time from t1 WHERE create_time>'2022-04-28 00:00:00' and  creat
 UPDATE t1 SET report_status=0 WHERE create_time>'2022-04-28 00:00:00' and  create_time<'2022-04-29 00:00:00';
 */
 
+#起始ID
 $begin_Id = 3188708841;
+
+#结尾ID
 $max_Id = 3207131498;
 
 $mysql_server='192.168.32.67';
