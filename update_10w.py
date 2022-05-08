@@ -3,6 +3,7 @@
 import sys
 import time
 import pymysql
+from datetime import datetime
 
 mysql_server = '172.19.136.33'
 mysql_username = 'admin'
@@ -30,6 +31,7 @@ with open('{0}.txt'.format(mysql_table),'r',encoding="UTF-8" ) as f:
     for line in f:
         i+=1
         lines.append(line.strip())
+        start_time = datetime.now()
         if i >= limit_rows:
             linestr = ','.join(lines)
             #print('UPDATE {0} SET pad=\'hechunyang\' WHERE id IN({1})' .format(mysql_table,linestr))
@@ -37,7 +39,9 @@ with open('{0}.txt'.format(mysql_table),'r',encoding="UTF-8" ) as f:
                 # 修改成你的SQL
                 rows = cursor.execute('UPDATE {0} SET pad=\'hechunyang\' WHERE id IN({1})' .format(mysql_table,linestr))
                 db.commit()
+                now_time = datetime.now()
                 print('{0}表更改{1}行记录成功.' .format(mysql_table,rows))
+                print('更新耗时时间：{0}'. format(now_time - start_time))
                 print('-' * 55)
                 time.sleep(1)
             except pymysql.Error as e:
@@ -47,5 +51,3 @@ with open('{0}.txt'.format(mysql_table),'r',encoding="UTF-8" ) as f:
             i = 0
             lines.clear()
     db.close()
-	
-print('{0}表数据更改成功.' .format(mysql_table))
