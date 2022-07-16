@@ -5,15 +5,15 @@ import time
 import pymysql
 from datetime import datetime
 
-mysql_server = '172.19.136.33'
+mysql_server = '127.0.0.1'
 mysql_username = 'admin'
 mysql_password = 'hechunyang'
 mysql_database = 'test'
-mysql_port = 3307
+mysql_port = 3306
 mysql_table = 'sbtest1'
 
 # 设置循环分批次批量更改数据N行记录
-limit_rows = 100000
+limit_rows = 1000
 
 db = pymysql.connect(host = mysql_server,
                      user = mysql_username,
@@ -27,7 +27,7 @@ cursor = db.cursor()
 ###################以下代码不用修改##########################
 i = 0
 lines = []
-with open('{0}.txt'.format(mysql_table),'r',encoding="UTF-8" ) as f:
+with open('/tmp/{0}.txt'.format(mysql_table),'r',encoding="UTF-8" ) as f:
     for line in f:
         i+=1
         lines.append(line.strip())
