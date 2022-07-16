@@ -9,6 +9,8 @@ UPDATE t1 SET report_status=0 WHERE create_time>'2022-04-28 00:00:00' and  creat
 ### 第一种思路：
 固需要通过脚本，循环分批次批量更改数据10万行记录。
 
+shell> yum install php php-mysqlnd -y
+
 shell> php update_10w.php
 
 ![image](https://raw.githubusercontent.com/hcymysql/update_10w/main/update_10w.png)
@@ -20,6 +22,8 @@ shell> php update_10w.php
 mysql> select id from sbtest1 order by id asc into outfile '/tmp/sbtest1.txt' FIELDS TERMINATED BY ',';
 
 2）固需要通过脚本，循环分批次批量更改数据10万行记录。
+
+shell> pip3 install PyMySQL -i "http://mirrors.aliyun.com/pypi/simple"  --trusted-host "mirrors.aliyun.com"
 
 shell> python3 update_10w.py
 
